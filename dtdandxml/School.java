@@ -3,8 +3,13 @@ package com.dtdandxml;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -27,7 +32,9 @@ public class School {
 		SchoolPojo sp = null;
 		StudentPojo stdnt = null ;
 
-		Map<SchoolPojo,StudentPojo> map = new HashMap<SchoolPojo,StudentPojo>();
+		Map<SchoolPojo,List> map = new HashMap<SchoolPojo,List>();
+		List<StudentPojo> list = null;
+		
 
 		File file = new File("/home/valuelabs/workspace/Threads/src/com/dtdandxml/school.xml");
 		FileInputStream fis = new FileInputStream(file);
@@ -36,7 +43,7 @@ public class School {
 		NodeList nodelist = document.getElementsByTagName("class");
 
 		for ( int i = 0; i <  nodelist.getLength(); i++ ) {
-			System.out.println("***************");
+			System.out.println("*************************");
 			Node currentNode = nodelist.item(i);
 
 
@@ -63,6 +70,8 @@ public class School {
 								Node subnode = subnodelist.item(k);
 								stdnt = new StudentPojo();
 
+								list = new ArrayList<StudentPojo>();
+								
 								if ( subnode.getNodeName().equalsIgnoreCase("firstname") ) {
 
 									stdnt.setFirstname(subnode.getTextContent());
@@ -73,7 +82,30 @@ public class School {
 									stdnt.setLastname(subnode.getTextContent());
 									System.out.println("last name :"+subnode.getTextContent());
 								}
+								if ( subnode.getNodeName().equalsIgnoreCase("DOB") ) {
+									
+									SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+									
+								 
+									Date date = null;
+									try {
+								 
+										 date = (Date) formatter.parse(subnode.getTextContent());
+										
+									} catch (ParseException e) {
+										e.printStackTrace();
+									}
 
+									stdnt.setDob(date);
+									System.out.println("DOB :"+subnode.getTextContent());
+								}
+								if ( subnode.getNodeName().equalsIgnoreCase("address") ) {
+
+									stdnt.setAddress(subnode.getTextContent());
+									System.out.println("Address :"+subnode.getTextContent());
+								}
+
+								list.add(stdnt);
 							}
 						}
 
@@ -85,19 +117,31 @@ public class School {
 						if ( childNode.getNodeName().equalsIgnoreCase("subjects") ) {
 
 							sp.setSubs(Integer.parseInt(childNode.getTextContent()));
-							System.out.println("subs :"+childNode.getTextContent());
+							System.out.println("NO.Of subs :"+childNode.getTextContent());
 						}
 
 					}
 				}
 			}
-			map.put(sp,stdnt);
+			map.put(sp,list);
 			
-			Iterator<Map.Entry<SchoolPojo,StudentPojo>> entries = map.entrySet().iterator();
+			Iterator<Map.Entry<SchoolPojo,List>> entries = map.entrySet().iterator();
 			while (entries.hasNext()) {
-			    Map.Entry<SchoolPojo,StudentPojo> entry = entries.next();
-			    System.out.println("Key = " + entry.getKey().classnumber + ", value = " + entry.getValue().firstname);
+			    Map.Entry<SchoolPojo,List> entry = entries.next();
+			    System.out.println("Key = " + entry.getKey().classnumber);
+			    List<StudentPojo> ll = entry.getValue();
+			    System.out.println(ll.size());
+			    Iterator<StudentPojo> listiterator = ll.iterator();
+			    while(listiterator.hasNext()){
+			    	StudentPojo ssp = listiterator.next();
+			    	if(ssp.getFirstname() != null)
+			    	System.out.print("first name :"+ssp.getFirstname());
+			    	if(ssp.getLastname() != null)
+			    		System.out.println(", last name : "+ssp.getLastname());
+			    }
 			}
+			System.out.println("list size : "+list.size());
+			
 			
 		}
 	}
