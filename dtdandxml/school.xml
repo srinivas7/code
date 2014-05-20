@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<school>
+
+	<class number="1">
+	
+		<student>
+			<firstname> Srinivas </firstname>
+			<lastname>Bavirisetty</lastname>
+		</student>
+		
+		<student>
+			<firstname> Rohit </firstname>
+			<lastname>Gudise</lastname>
+		</student>
+		
+		<student>
+			<firstname> Madhu </firstname>
+			<lastname>Alisala</lastname>
+		</student>
+		
+		<student>
+			<firstname>Sasi</firstname>
+			<lastname>Skom</lastname>
+		</student>
+		
+		<classteacher>classtchr</classteacher>
+		<subjects>5</subjects>
+	</class>
+	
+	<class number="2">
+	
+		<student>
+			<firstname> Srinivas2 </firstname>
+			<lastname>Bavirisetty2</lastname>
+		</student>
+		
+		<student>
+			<firstname> Rohit2 </firstname>
+			<lastname>Gudise2</lastname>
+		</student>
+		
+		<student>
+			<firstname> Madhu2 </firstname>
+			<lastname>Alisala2</lastname>
+		</student>
+		
+		<student>
+			<firstname>Sasi2</firstname>
+			<lastname>Skom2</lastname>
+		</student>
+		
+		<classteacher>classtchr2</classteacher>
+		<subjects>5</subjects>
+	</class>
+
+</school>
