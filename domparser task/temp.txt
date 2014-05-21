@@ -1,0 +1,24 @@
+Iterator<Map.Entry<String,SchoolPojo>> entries = map.entrySet().iterator();
+			while (entries.hasNext()) {
+			    Map.Entry<String,SchoolPojo> entry = entries.next();
+			    System.out.println("Key = " + entry.getKey());
+			    SchoolPojo ll =  entry.getValue();
+			    
+			    List<StudentPojo> l = ll.getList();
+			    Iterator<StudentPojo> listiterator = l.iterator();
+			    while(listiterator.hasNext()){
+			    	StudentPojo ssp = listiterator.next();
+			    	if(ssp.getDob() != null)
+				    	System.out.print(" Dob :"+ssp.getFirstname());
+			    	if(ssp.getAddress() != null)
+				    	System.out.print(", Address :"+ssp.getFirstname());
+			    	if(ssp.getFirstname() != null)
+			    	System.out.print(", first name :"+ssp.getFirstname());
+			    	if(ssp.getLastname() != null)
+			    		System.out.println(", last name : "+ssp.getLastname());
+			    	
+			    }
+			    System.out.println("list size : "+entry.toString());
+			  
+			    
+			}
