@@ -1,0 +1,20 @@
+<project default="compile">
+  <target name="compile">
+    <javac srcdir="." includeantruntime="false" />
+  </target>
+
+  <target name="jar" depends="compile">
+	    <jar destfile="/ant.jar" basedir=".">
+	      <manifest>
+	        <attribute name="Main-Class" value="Temp" />
+	      </manifest>
+	    </jar>
+   </target>
+
+  <target name="run" depends="jar">
+    <java classname="Temp" fork="true">
+        <classpath path="ant.jar" />
+    </java>
+  </target>
+
+</project>
