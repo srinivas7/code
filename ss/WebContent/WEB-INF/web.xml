@@ -1,0 +1,19 @@
+<web-app>
+
+<display-name>First Servlet</display-name>
+    <description>
+        This is a simple web application with a source code organization
+        based on the recommendations of the Application Developer's Guide.
+    </description>
+
+    <servlet>
+        <servlet-name>first</servlet-name>
+        <servlet-class>comm.firstservlet.FirstServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>first</servlet-name>
+        <url-pattern>/first</url-pattern>
+    </servlet-mapping>
+
+</web-app>
